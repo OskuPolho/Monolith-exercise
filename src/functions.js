@@ -52,13 +52,14 @@ export const sortDataByUser = (data) => {
 
 
 
-const calculateBalance= (data, currency) => {
+export const calculateBalance= (data, currency) => {
 return data.reduce((totEur, dataPoint) => {
     const isNum = checkIfNum(dataPoint.amount);
     if (dataPoint.currency === currency && isNum) {
     return totEur += Number(dataPoint.amount)
+    } else {
+      return totEur
     }
-    return totEur
 }, 0);
 }
 
@@ -142,4 +143,28 @@ const brokenData = [
     "currency": "GBP",
     "amount": "-751.10"
   }
+]
+
+// mockData for testing balanceCalculation
+export const mockData = [
+  {
+  amount: '300',
+  currency: 'EUR'
+  },
+  {
+  amount: '25',
+  currency: 'USD'
+  },
+  {
+  amount: '25',
+  currency: 'GBP'
+  },
+  {
+  amount: '125',
+  currency: 'GBP'
+  },
+  {
+  amount: '-200',
+  currency: 'EUR'
+  },
 ]
